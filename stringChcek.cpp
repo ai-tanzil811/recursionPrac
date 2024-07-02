@@ -1,46 +1,19 @@
-#include <stdio.h>
-#include <stdbool.h>
-
-// Function prototype
-bool isBalanced(char str[], int index, int balance);
-
-int main() {
-    char str[1000];
-    printf("Enter the bracket sequence: ");
-    scanf("%s", str);
-
-    // Call the recursive function to check if the bracket sequence is balanced
-    if (isBalanced(str, 0, 0)) {
-        printf("YES\n");
-    } else {
-        printf("NO\n");
-    }
-
-    return 0;
+// You are given a string which consists of opening and closing round brackets.
+// Check whether it is a balanced bracket sequence using recursion.
+// Input: The only line of input contains a string. Each character in the string will
+// be ‘(’or ‘)’.
+// Output: Print “YES” if the bracket sequence is balanced, and “NO” otherwise.
+#include<iostream>
+#include<string>
+using namespace std;
+bool isBalanced(string str){
+    int l=str.length();
+    if(l==0) return true;
+    if(str[0]=='(' && str[l-1]==')') isBalanced(str.substr(1,l-2));
+    else return false;
 }
-
-// Recursive function to check if the bracket sequence is balanced
-bool isBalanced(char str[], int index, int balance) {
-    // Base case: If balance becomes negative, it means there are more ')' than '('
-    if (balance < 0) {
-        return false;
-    }
-
-    // Base case: If we reach the end of the string
-    if (str[index] == '\0') {
-        // Check if balance is zero, which means equal number of '(' and ')'
-        return balance == 0;
-    }
-
-    // Recursive cases:
-    if (str[index] == '(') {
-        // If current character is '(', increase balance
-        return isBalanced(str, index + 1, balance + 1);
-    } else if (str[index] == ')') {
-        // If current character is ')', decrease balance
-        return isBalanced(str, index + 1, balance - 1);
-    } else {
-        // If character is neither '(' nor ')', continue checking
-        return isBalanced(str, index + 1, balance);
-    }
+int main(){
+    if(isBalanced("()")) cout<<"YES";
+    else cout<<"NO";
+    return 0;
 }
