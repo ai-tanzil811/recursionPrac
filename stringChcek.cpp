@@ -13,7 +13,7 @@ bool isBalanced(string str){
     else return false;
 }
 int main(){
-    if(isBalanced("()")) cout<<"YES";
+    if(isBalanced("((()))")) cout<<"YES";
     else cout<<"NO";
     return 0;
 }
